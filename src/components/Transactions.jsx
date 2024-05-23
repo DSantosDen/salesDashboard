@@ -11,11 +11,15 @@ import {
 import { mockTransactions } from "./mockData";
 import theme from "./theme";
 
+const primaryLight = theme.palette.primary.light;
+const primaryMain = theme.palette.primary.main;
+const boldFontWeight = "bold";
+
 const Transactions = () => {
   return (
     <Card>
       <CardContent className="card-content">
-        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: boldFontWeight }}>
           Recent Transactions
         </Typography>
         <List>
@@ -25,17 +29,17 @@ const Transactions = () => {
               divider
               sx={{
                 borderBottomWidth: 5,
-                borderBottomColor: theme.palette.primary.main,
+                borderBottomColor: primaryMain,
               }}
             >
               <ListItemText
                 primary={
-                  <span style={{ color: theme.palette.primary.light }}>
+                  <span style={{ color: primaryLight }}>
                     {transaction.txId}
                   </span>
                 }
                 secondary={`${transaction.user} ${transaction.date}`}
-                sx={{ paddingRight: 10 }}
+                sx={{ paddingRight: 15 }}
               />
 
               <ListItemSecondaryAction>
