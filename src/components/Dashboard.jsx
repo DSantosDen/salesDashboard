@@ -1,24 +1,36 @@
-import React from 'react';
-import { Box, Typography, Grid, Card, CardContent } from '@mui/material';
-import Transactions from './Transactions';
-import theme from './theme';
+import { Box, Typography, Grid, Card, CardContent } from "@mui/material";
+import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import TrafficIcon from "@mui/icons-material/Traffic";
+import Transactions from "./Transactions";
+import theme from "./theme";
 
 const primaryLight = theme.palette.primary.light;
-const boldFontWeight = 'bold';
+const boldFontWeight = "bold";
 
-const StatCard = ({ value, label, change }) => (
+const StatCard = ({ icon: IconComponent, value, label, change }) => (
   <Grid item xs={12} sm={4}>
-    <Card className="card-parent" sx={{ height: '150px' }}>
+    <Card className="card-parent" sx={{ height: "150px" }}>
       <CardContent className="card-content">
-        <Typography variant="h5" sx={{ fontWeight: boldFontWeight }}>
-          {value}
-        </Typography>
-        <Typography variant="subtitle2" sx={{ color: primaryLight }}>
-          {label}
-        </Typography>
-        <Typography variant="subtitle2" sx={{ color: primaryLight }}>
-          {change}
-        </Typography>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Box display="flex" flexDirection={"column"} alignItems="center">
+            <IconComponent sx={{ color: primaryLight }} />
+            <Typography variant="h5" sx={{ fontWeight: boldFontWeight }}>
+              {value}
+            </Typography>
+            <Typography variant="subtitle2" sx={{ color: primaryLight }}>
+              {label}
+            </Typography>
+          </Box>
+          <Box className="change-value-group">
+            <Typography
+              variant="subtitle2"
+              sx={{ fontStyle: "italic", color: primaryLight }}
+            >
+              {change}
+            </Typography>
+          </Box>
+        </Box>
       </CardContent>
     </Card>
   </Grid>
@@ -35,16 +47,34 @@ const Dashboard = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        <StatCard value="431,225" label="Sales Obtained" change="+21%" />
-        <StatCard value="32,441" label="New Clients" change="+5%" />
-        <StatCard value="1,325,134" label="Traffic Received" change="+43%" />
+        <StatCard
+          icon={PointOfSaleIcon}
+          value="431,225"
+          label="Sales Obtained"
+          change="+21%"
+        />
+        <StatCard
+          icon={ContactPhoneIcon}
+          value="32,441"
+          label="New Clients"
+          change="+5%"
+        />
+        <StatCard
+          icon={TrafficIcon}
+          value="1,325,134"
+          label="Traffic Received"
+          change="+43%"
+        />
       </Grid>
 
       <Box sx={{ mt: 4, mb: 4 }}>
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent className="card-content">
-              <Typography variant="subtitle1" sx={{ fontWeight: boldFontWeight }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: boldFontWeight }}
+              >
                 Revenue Generated
               </Typography>
               <Typography
